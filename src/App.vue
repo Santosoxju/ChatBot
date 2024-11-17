@@ -57,8 +57,8 @@ export default {
   mounted() {
     // Usar la URL correcta según el entorno (local o producción)
     const socketUrl = process.env.NODE_ENV === 'production'
-      ? 'wss://tu-app.vercel.app' // Cambia por la URL de producción en Vercel
-      : 'http://127.0.0.1:3000'; // URL local en desarrollo
+      ? 'wss://chat-bot-eight-kappa.vercel.app' // Cambiando por la URL de producción en Vercel
+      //: 'http://127.0.0.1:3000'; // URL local en desarrollo
 
     // Conectar al servidor de WebSocket
     this.socket = io(socketUrl);
