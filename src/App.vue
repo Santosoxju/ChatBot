@@ -57,8 +57,8 @@ export default {
   mounted() {
     // Usar la URL correcta según el entorno (local o producción)
     const socketUrl = process.env.NODE_ENV === 'production'
-      ? 'wss://chat-bot-eight-kappa.vercel.app' // Cambiando por la URL de producción en Vercel
-      //: 'http://127.0.0.1:3000'; // URL local en desarrollo
+      ? 'wss://chat-bot-eight-kappa.vercel.app'  // URL de producción
+      : 'http://127.0.0.1:3000';  // URL local para desarrollo
 
     // Conectar al servidor de WebSocket
     this.socket = io(socketUrl);
@@ -202,28 +202,28 @@ body {
   text-align: center;
   padding: 10px;
   background-color: #f8f8f8;
-  border-bottom: 2px solid #e0e0e0;
+  border-bottom: 1px solid #e1e1e1;
 }
 
 .chat-container {
   display: flex;
   flex-direction: column;
-  height: 500px;
+  height: 100%;
 }
 
 .chat-messages {
   flex: 1;
-  padding: 15px;
   overflow-y: auto;
-  background-color: #fafafa;
-  border-bottom: 2px solid #e0e0e0;
+  padding: 10px;
+  max-height: 400px;
 }
 
 .message {
-  margin-bottom: 10px;
-  border-radius: 20px;
-  padding: 10px 15px;
-  max-width: 75%;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 10px;
+  max-width: 70%;
+  background-color: #f1f1f1;
   word-wrap: break-word;
 }
 
@@ -234,59 +234,39 @@ body {
 }
 
 .bot-message {
-  background-color: #e0e0e0;
-  color: #333;
-  align-self: flex-start;
+  background-color: #e1e1e1;
 }
 
 .chat-input {
-  padding: 10px;
-  background-color: #ffffff;
-  border-top: 2px solid #e0e0e0;
   display: flex;
+  align-items: center;
+  padding: 10px;
+  background-color: #f9f9f9;
 }
 
-input {
+.chat-input input {
   flex: 1;
   padding: 10px;
-  border: 2px solid #ccc;
   border-radius: 20px;
-  outline: none;
-  transition: border 0.3s;
+  border: 1px solid #ddd;
   margin-right: 10px;
 }
 
-input:focus {
-  border-color: #007bff;
-}
-
-button {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 20px;
+.chat-input button {
+  padding: 10px;
+  border-radius: 50%;
   background-color: #007bff;
   color: white;
+  border: none;
   cursor: pointer;
-  transition: background-color 0.3s;
-  margin-left: 5px;
 }
 
-button:hover {
-  background-color: #0056b3;
+.chat-input button:disabled {
+  background-color: #b0b0b0;
 }
 
 .loading {
-  font-size: 1rem;
-  color: #007bff;
-  text-align: center;
-  padding: 10px;
-}
-
-.fade-enter-active, .fade-leave-active {
-  transition: opacity 0.5s;
-}
-
-.fade-enter, .fade-leave-to {
-  opacity: 0;
+  font-size: 0.9rem;
+  color: #777;
 }
 </style>
