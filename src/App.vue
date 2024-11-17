@@ -55,20 +55,28 @@ export default {
     };
   },
   mounted() {
-    // Conectar al servidor de WebSocket
-    this.socket = io('http://127.0.0.1:3000');
-    this.messages.push({ text: "¡Bienvenido al Chatbot de Ayuda! ¿En qué puedo ayudarte hoy?", fromClient: false });
+  // Usar la URL correcta según el entorno (local o producción)
+  const socketUrl = process.env.NODE_ENV === 'production'
+    ? 'wss://tu-app.vercel.app' // Cambia por la URL de producción en Vercel
+    : 'http://127.0.0.1:3000'; // URL local en desarrollo
 
-    this.socket.on('message', (text) => {
-      setTimeout(() => {
-        this.messages.push({ text, fromClient: false });
-        this.loading = false;
-        this.$nextTick(() => this.scrollChatToBottom());
-      }, 1500);
-    });
+  // Conectar al servidor de WebSocket
+  this.socket = io(socketUrl);
 
-    // Emitir saludo inicial
-    this.socket.emit('saludo', 'Hola, soy un cliente de Vue.js');
+  this.messages.push({ text: "¡Bienvenido al Chatbot de Ayuda! ¿En qué puedo ayudarte hoy?", fromClient: false });
+
+  // Escuchar los mensajes que llegan del servidor
+  this.socket.on('message', (text) => {
+    setTimeout(() => {
+      this.messages.push({ text, fromClient: false });
+      this.loading = false;
+      this.$nextTick(() => this.scrollChatToBottom());
+    }, 1500);
+  });
+
+  // Emitir saludo inicial
+  this.socket.emit('saludo', 'Hola, soy un cliente de Vue.js');
+}
 
     // Configuración del reconocimiento de voz
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
