@@ -9,7 +9,7 @@ import eventlet
 eventlet.monkey_patch()
 
 app = Flask(__name__)
-socketio = SocketIO(app, cors_allowed_origins="*")
+socketio = SocketIO(app, cors_allowed_origins="*")  # Permitir cualquier origen para pruebas
 
 user_sessions = {}
 
@@ -27,34 +27,34 @@ def handle_message(message):
         if "cliente" in message.lower():
             estado_usuario["tipo"] = "cliente"
             user_sessions[user_id] = estado_usuario
-            socketio.send("Eres cliente. Puedes hacer preguntas.")
+            socketio.emit("message", "Eres cliente. Puedes hacer preguntas.")
         elif "usuario" in message.lower():
             estado_usuario["tipo"] = "usuario"
             user_sessions[user_id] = estado_usuario
-            socketio.send("Por favor, ingresa tu correo.")
+            socketio.emit("message", "Por favor, ingresa tu correo.")
         else:
-            socketio.send("¿Eres cliente o usuario?")
+            socketio.emit("message", "¿Eres cliente o usuario?")
 
     elif estado_usuario["tipo"] == "usuario" and not estado_usuario["autenticado"]:
         if "@" in message:
             estado_usuario["email"] = message
-            socketio.send("Por favor, ingresa tu contraseña.")
+            socketio.emit("message", "Por favor, ingresa tu contraseña.")
         else:
             email = estado_usuario["email"]
             if email and verificar_usuario(email, message):
                 estado_usuario["autenticado"] = True
                 user_sessions[user_id] = estado_usuario
-                socketio.send("Autenticación exitosa. Puedes hacer consultas.")
+                socketio.emit("message", "Autenticación exitosa. Puedes hacer consultas.")
             else:
-                socketio.send("Credenciales incorrectas. Inténtalo de nuevo.")
+                socketio.emit("message", "Credenciales incorrectas. Inténtalo de nuevo.")
 
     elif estado_usuario["tipo"] == "usuario" and estado_usuario["autenticado"]:
         respuesta = ejecutar_consulta(message)
-        socketio.send(respuesta)
+        socketio.emit("message", respuesta)
 
     elif estado_usuario["tipo"] == "cliente":
         respuesta = generar_respuesta_cliente(message)
-        socketio.send(respuesta)
+        socketio.emit("message", respuesta)
 
 if __name__ == '__main__':
     socketio.run(app, host='0.0.0.0', port=3000)
