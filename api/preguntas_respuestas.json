@@ -1,0 +1,162 @@
+{
+    "preguntas": [
+        {
+            "tag": "folio_solicitud",
+            "pregunta": "¿qué es el folio de una solicitud?",
+            "incompleta": "folio"
+        },
+        {
+            "tag": "servicios",
+            "pregunta": "¿qué son los servicios?",
+            "incompleta": "servicios"
+        },
+        {
+            "tag": "cantidad_servicios",
+            "pregunta": "¿cuántos servicios podré contratar?",
+            "incompleta": "cantidad de servicios"
+        },
+        {
+            "tag": "supervisor_proyecto",
+            "pregunta": "¿quién será el supervisor de mi proyecto?",
+            "incompleta": "supervisor"
+        },
+        {
+            "tag": "descripcion_solicitud",
+            "pregunta": "¿qué debo incluir en la descripción de mi solicitud?",
+            "incompleta": "descripción de la solicitud"
+        },
+        {
+            "tag": "folio_explicacion",
+            "pregunta": "Explícame qué significa el término 'folio' en una solicitud.",
+            "incompleta": "significado del folio"
+        },
+        {
+            "tag": "definicion_servicio",
+            "pregunta": "¿Puedes definir qué es un 'servicio' en el contexto de un proyecto?",
+            "incompleta": "definición de servicio"
+        },
+        {
+            "tag": "limite_servicios",
+            "pregunta": "¿Existe un límite en la cantidad de servicios que puedo incluir en mi proyecto?",
+            "incompleta": "límite de servicios"
+        },
+        {
+            "tag": "eleccion_supervisor",
+            "pregunta": "¿Cómo se elige al supervisor para un proyecto específico?",
+            "incompleta": "elección de supervisor"
+        },
+        {
+            "tag": "elementos_esenciales",
+            "pregunta": "¿Cuáles son los elementos esenciales que debo mencionar al describir mi solicitud?",
+            "incompleta": "elementos esenciales de la solicitud"
+        },
+        {
+            "tag": "importancia_detalles",
+            "pregunta": "¿Cuál es la importancia de incluir detalles específicos al solicitar un folio?",
+            "incompleta": "importancia del folio"
+        },
+        {
+            "tag": "informacion_supervisores",
+            "pregunta": "Dame más información sobre la asignación de supervisores en los proyectos.",
+            "incompleta": "información sobre supervisores"
+        },
+        {
+            "tag": "agregar_servicios",
+            "pregunta": "¿Puedo agregar servicios adicionales a mi proyecto después de presentar la solicitud inicial?",
+            "incompleta": "agregar servicios"
+        },
+        {
+            "tag": "criterios_supervisor",
+            "pregunta": "¿Qué criterios se utilizan para seleccionar al supervisor de un proyecto?",
+            "incompleta": "criterios para seleccionar supervisor"
+        },
+        {
+            "tag": "combinacion_folio",
+            "pregunta": "¿Cómo afecta la combinación de letras de la empresa y la fecha al folio de la solicitud?",
+            "incompleta": "combinación de folio"
+        },
+        {
+            "tag": "hola",
+            "pregunta": "hola",
+            "incompleta": "hola"
+        },
+        {
+            "tag": "buenos_dias",
+            "pregunta": "buenos días",
+            "incompleta": "buenos días"
+        },
+        {
+            "tag": "buenas_tardes",
+            "pregunta": "buenas tardes",
+            "incompleta": "buenas tardes"
+        },
+        {
+            "tag": "buenas_noches",
+            "pregunta": "buenas noches",
+            "incompleta": "buenas noches"
+        },
+        {
+            "tag": "como_estas",
+            "pregunta": "¿cómo estás?",
+            "incompleta": "cómo estás"
+        },
+        {
+            "tag": "adios",
+            "pregunta": "adios",
+            "incompleta": "adios"
+        },
+        {
+            "tag": "nos_vemos",
+            "pregunta": "nos vemos",
+            "incompleta": "nos vemos"
+        },
+        {
+            "tag": "gracias",
+            "pregunta": "gracias",
+            "incompleta": "gracias"
+        },
+        {
+            "tag": "que_tal",
+            "pregunta": "¿qué tal?",
+            "incompleta": "qué tal"
+        },
+        {
+            "tag": "hasta_luego",
+            "pregunta": "hasta luego",
+            "incompleta": "hasta luego"
+        },
+        {
+            "tag": "hasta_pronto",
+            "pregunta": "hasta pronto",
+            "incompleta": "hasta pronto"
+        }
+    ],
+    "respuestas": [
+        "El folio es la combinación de las primeras 3 letras de su empresa y la fecha de hoy sin guiones o barras. Ejemplo: emp121123 (emp=empresa y 121123=12/11/2023).",
+        "Los servicios son elementos adicionales que puede contratar para su proyecto, como agua, energía, andamios, herramientas, máquinas de construcción, etc.",
+        "Puede contratar tantos servicios como necesite y considere útiles para su proyecto.",
+        "El equipo de trabajo le asignará un supervisor que será seleccionado considerando lo mejor para su proyecto.",
+        "Debe incluir detalles sobre lo que se construirá o reparará, así como cualquier otra información relevante para su solicitud.",
+        "El folio es una combinación única de las primeras 3 letras de su empresa y la fecha actual. Ejemplo: emp121123 (emp=empresa y 121123=12/11/2023).",
+        "En el contexto de un proyecto, un 'servicio' se refiere a elementos adicionales que se pueden contratar, como agua, energía, herramientas, etc.",
+        "No hay un límite específico en la cantidad de servicios que puede incluir en su proyecto. Puede contratar tantos como necesite.",
+        "El supervisor se elige considerando lo mejor para su proyecto. El equipo de trabajo evaluará las necesidades y asignará un supervisor adecuado.",
+        "Al describir su solicitud, incluya detalles sobre lo que se construirá o reparará y cualquier información relevante para comprender su proyecto.",
+        "Incluir detalles específicos al solicitar un folio ayuda a garantizar que el folio generado sea único y se ajuste a las características de su proyecto.",
+        "La asignación de supervisores se realiza considerando las necesidades específicas de su proyecto. Se seleccionará un supervisor cualificado para supervisar el progreso.",
+        "Sí, puede agregar servicios adicionales a su proyecto después de presentar la solicitud inicial. Comuníquese con el equipo de trabajo para hacer modificaciones.",
+        "Los criterios para seleccionar al supervisor incluyen la experiencia, las habilidades y la adecuación a las necesidades específicas de su proyecto.",
+        "La combinación de letras de la empresa y la fecha se utiliza para generar un folio único que identifica su solicitud de manera exclusiva. Ejemplo: emp121123.",
+        "¡Hola! ¿En qué puedo ayudarte hoy?",
+        "¡Buenos días! ¿Cómo puedo ayudarte?",
+        "¡Buenas tardes! ¿En qué te puedo asistir?",
+        "¡Buenas noches! ¿Necesitas ayuda con algo?",
+        "¡Estoy aquí para ayudarte! ¿En qué necesitas apoyo?",
+        "¡Adiós! Espero verte pronto.",
+        "¡Nos vemos! Que tengas un buen día.",
+        "¡Gracias! Estoy aquí para ayudarte.",
+        "¿Qué tal? ¿Cómo te va?",
+        "¡Hasta luego! Que tengas un excelente día.",
+        "¡Hasta pronto! Siempre aquí para ayudarte."
+    ]
+}

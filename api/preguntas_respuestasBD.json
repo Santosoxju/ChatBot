@@ -1,0 +1,174 @@
+{
+  "cuántos usuarios": {
+    "consulta": "SELECT COUNT(*) FROM usuarios;"
+  },
+  "¿Cuántos usuarios hay?": {
+    "consulta": "SELECT COUNT(*) FROM usuarios;"
+  },
+  "¿Cuántos usuarios están registrados?": {
+    "consulta": "SELECT COUNT(*) FROM usuarios;"
+  },
+  "¿Cuál es el número total de usuarios?": {
+    "consulta": "SELECT COUNT(*) FROM usuarios;"
+  },
+  "lista de usuarios": {
+    "consulta": "SELECT id_usuario, nombre, apellido, email FROM usuarios;"
+  },
+  "¿Me puedes mostrar la lista de usuarios?": {
+    "consulta": "SELECT id_usuario, nombre, apellido, email FROM usuarios;"
+  },
+  "¿Cuáles son los usuarios registrados?": {
+    "consulta": "SELECT id_usuario, nombre, apellido, email FROM usuarios;"
+  },
+  "usuarios en la base de datos": {
+    "consulta": "SELECT id_usuario, nombre, apellido, email FROM usuarios;"
+  },
+  "usuario con el correo": {
+    "consulta": "SELECT id_usuario, nombre, apellido FROM usuarios WHERE email = %s;"
+  },
+  "¿Qué usuario tiene el correo %s?": {
+    "consulta": "SELECT id_usuario, nombre, apellido FROM usuarios WHERE email = %s;"
+  },
+  "¿Cuál es el usuario con el email %s?": {
+    "consulta": "SELECT id_usuario, nombre, apellido FROM usuarios WHERE email = %s;"
+  },
+  "cuántas empresas": {
+    "consulta": "SELECT COUNT(*) FROM empresa;"
+  },
+  "¿Cuántas empresas existen?": {
+    "consulta": "SELECT COUNT(*) FROM empresa;"
+  },
+  "¿Cuántas empresas están registradas?": {
+    "consulta": "SELECT COUNT(*) FROM empresa;"
+  },
+  "total de empresas": {
+    "consulta": "SELECT COUNT(*) FROM empresa;"
+  },
+  "lista de empresas": {
+    "consulta": "SELECT nombre, direccion FROM empresa;"
+  },
+  "¿Cuáles son las empresas registradas?": {
+    "consulta": "SELECT nombre, direccion FROM empresa;"
+  },
+  "¿Me puedes mostrar las empresas?": {
+    "consulta": "SELECT nombre, direccion FROM empresa;"
+  },
+  "empresas en la base de datos": {
+    "consulta": "SELECT nombre, direccion FROM empresa;"
+  },
+  "dirección de la empresa": {
+    "consulta": "SELECT direccion FROM empresa WHERE nombre = %s;"
+  },
+  "¿Cuál es la dirección de la empresa %s?": {
+    "consulta": "SELECT direccion FROM empresa WHERE nombre = %s;"
+  },
+  "¿Dónde se encuentra la empresa %s?": {
+    "consulta": "SELECT direccion FROM empresa WHERE nombre = %s;"
+  },
+  "¿Cómo puedo encontrar la dirección de la empresa %s?": {
+    "consulta": "SELECT direccion FROM empresa WHERE nombre = %s;"
+  },
+  "cuántos proyectos": {
+    "consulta": "SELECT COUNT(*) FROM proyecto;"
+  },
+  "¿Cuántos proyectos hay?": {
+    "consulta": "SELECT COUNT(*) FROM proyecto;"
+  },
+  "¿Cuántos proyectos existen?": {
+    "consulta": "SELECT COUNT(*) FROM proyecto;"
+  },
+  "total de proyectos": {
+    "consulta": "SELECT COUNT(*) FROM proyecto;"
+  },
+  "estado de cada proyecto": {
+    "consulta": "SELECT id_proyecto, estado_proyecto FROM proyecto;"
+  },
+  "¿Cuál es el estado de cada proyecto?": {
+    "consulta": "SELECT id_proyecto, estado_proyecto FROM proyecto;"
+  },
+  "¿Cómo está cada proyecto?": {
+    "consulta": "SELECT id_proyecto, estado_proyecto FROM proyecto;"
+  },
+  "estado del proyecto": {
+    "consulta": "SELECT estado_proyecto FROM proyecto WHERE id_proyecto = %s;"
+  },
+  "¿Cuál es el estado del proyecto con ID %s?": {
+    "consulta": "SELECT estado_proyecto FROM proyecto WHERE id_proyecto = %s;"
+  },
+  "¿Cómo está el proyecto con el ID %s?": {
+    "consulta": "SELECT estado_proyecto FROM proyecto WHERE id_proyecto = %s;"
+  },
+  "cuántas solicitudes de proyecto": {
+    "consulta": "SELECT COUNT(*) FROM solicitud_proyecto;"
+  },
+  "¿Cuántas solicitudes de proyecto existen?": {
+    "consulta": "SELECT COUNT(*) FROM solicitud_proyecto;"
+  },
+  "¿Cuántas solicitudes están pendientes?": {
+    "consulta": "SELECT COUNT(*) FROM solicitud_proyecto;"
+  },
+  "total de solicitudes de proyecto": {
+    "consulta": "SELECT COUNT(*) FROM solicitud_proyecto;"
+  },
+  "lista de solicitudes de proyecto": {
+    "consulta": "SELECT folio_solicitud, id_usuario, id_empresa, fecha, monto_presupuesto, monto_anticipo, estado FROM solicitud_proyecto;"
+  },
+  "¿Me puedes mostrar la lista de solicitudes de proyecto?": {
+    "consulta": "SELECT folio_solicitud, id_usuario, id_empresa, fecha, monto_presupuesto, monto_anticipo, estado FROM solicitud_proyecto;"
+  },
+  "¿Cuáles son las solicitudes de proyecto registradas?": {
+    "consulta": "SELECT folio_solicitud, id_usuario, id_empresa, fecha, monto_presupuesto, monto_anticipo, estado FROM solicitud_proyecto;"
+  },
+  "estado de la solicitud": {
+    "consulta": "SELECT estado FROM solicitud_proyecto WHERE folio_solicitud = %s;"
+  },
+  "¿Cuál es el estado de la solicitud con folio %s?": {
+    "consulta": "SELECT estado FROM solicitud_proyecto WHERE folio_solicitud = %s;"
+  },
+  "¿Cómo está la solicitud con el folio %s?": {
+    "consulta": "SELECT estado FROM solicitud_proyecto WHERE folio_solicitud = %s;"
+  },
+  "lista de servicios": {
+    "consulta": "SELECT id_servicio, servicio, descripcion FROM servicio;"
+  },
+  "¿Me puedes dar la lista de servicios?": {
+    "consulta": "SELECT id_servicio, servicio, descripcion FROM servicio;"
+  },
+  "¿Cuáles son los servicios disponibles?": {
+    "consulta": "SELECT id_servicio, servicio, descripcion FROM servicio;"
+  },
+  "¿Qué servicios están disponibles?": {
+    "consulta": "SELECT id_servicio, servicio, descripcion FROM servicio;"
+  },
+  "detalle de solicitud de proyecto": {
+    "consulta": "SELECT id_detalle_solicitud, descripcion, costo FROM detalle_solicitud WHERE id_solicitud = %s;"
+  },
+  "¿Cuáles son los detalles de la solicitud de proyecto con ID %s?": {
+    "consulta": "SELECT id_detalle_solicitud, descripcion, costo FROM detalle_solicitud WHERE id_solicitud = %s;"
+  },
+  "servicios de detalle de solicitud": {
+    "consulta": "SELECT id_servicio, id_detalle_solicitud, id_solicitud FROM servicio_detalle_solicitud;"
+  },
+  "lista de supervisores": {
+    "consulta": "SELECT id_supervisor, nombre, cargo, telefono, correo FROM supervisor;"
+  },
+  "¿Me puedes dar la lista de supervisores?": {
+    "consulta": "SELECT id_supervisor, nombre, cargo, telefono, correo FROM supervisor;"
+  },
+  "supervisores disponibles": {
+    "consulta": "SELECT id_supervisor, nombre, cargo, telefono, correo FROM supervisor;"
+  },
+  "supervisores de un proyecto": {
+    "consulta": "SELECT id_supervisor FROM proyecto_supervisor WHERE id_proyecto = %s;"
+  },
+  "¿Quiénes son los supervisores del proyecto con ID %s?": {
+    "consulta": "SELECT id_supervisor FROM proyecto_supervisor WHERE id_proyecto = %s;"
+  },
+  "colaboradores de un supervisor": {
+    "consulta": "SELECT id_colaborador, nombre, cargo, telefono, correo FROM colaborador WHERE id_supervisor = %s;"
+  },
+  "¿Quiénes son los colaboradores del supervisor con ID %s?": {
+    "consulta": "SELECT id_colaborador, nombre, cargo, telefono, correo FROM colaborador WHERE id_supervisor = %s;"
+  }
+
+}
