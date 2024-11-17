@@ -48,24 +48,22 @@ export default {
     return {
       messages: [],
       newMessage: '',
-      socket: null, // Store the socket connection here
+      socket: null,
       loading: false,
       isChatOpen: false,
       recognition: null,
     };
   },
   mounted() {
-    // Use the correct URL depending on the environment (local or production)
+    // Vercel WebSocket URL
     const socketUrl = process.env.NODE_ENV === 'production'
-      ? 'wss://chat-bot-eight-kappa.vercel.app'  // Production URL
+      ? 'wss://your-vercel-app-url.vercel.app'  // Production URL
       : 'http://127.0.0.1:3000';  // Local URL for development
 
-    // Connect to the WebSocket server
     this.socket = io(socketUrl);
 
     this.messages.push({ text: "¡Bienvenido al Chatbot de Ayuda! ¿En qué puedo ayudarte hoy?", fromClient: false });
 
-    // Listen for messages from the server
     this.socket.on('message', (text) => {
       setTimeout(() => {
         this.messages.push({ text, fromClient: false });
@@ -74,10 +72,8 @@ export default {
       }, 1500);
     });
 
-    // Emit a greeting message
     this.socket.emit('saludo', 'Hola, soy un cliente de Vue.js');
 
-    // Speech recognition setup
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     if (SpeechRecognition) {
       this.recognition = new SpeechRecognition();
@@ -85,7 +81,6 @@ export default {
       this.recognition.continuous = false;
       this.recognition.interimResults = false;
 
-      // When speech recognition has a result, update the new message text
       this.recognition.onresult = (event) => {
         const transcript = event.results[0][0].transcript;
         this.newMessage = this.removeAccents(transcript);
@@ -99,11 +94,9 @@ export default {
     }
   },
   methods: {
-    // Remove accents from the text
     removeAccents(str) {
       return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
     },
-    // Start voice recognition
     startRecording() {
       if (this.recognition) {
         this.recognition.start();
@@ -111,15 +104,12 @@ export default {
         alert('Reconocimiento de voz no soportado en este navegador.');
       }
     },
-    // Send the message to the server
     sendMessage() {
       if (this.newMessage.trim() === '') return;
       this.loading = true;
 
-      // Remove accents before sending the message
       const messageText = this.removeAccents(this.newMessage);
 
-      // Emit the message via WebSocket
       this.socket.emit('message', messageText);
       this.messages.push({ text: messageText, fromClient: true });
       this.newMessage = '';
@@ -127,13 +117,12 @@ export default {
         this.scrollChatToBottom();
       });
 
-      // Send message via HTTP POST request to backend API
       fetch('/api/chat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ message: messageText, user_id: this.socket.id }), // Pass the user_id here
+        body: JSON.stringify({ message: messageText, user_id: this.socket.id }),
       })
       .then(response => response.json())
       .then(data => {
@@ -145,13 +134,11 @@ export default {
         });
       });
     },
-    // Scroll to the bottom of the chat window
     scrollChatToBottom() {
       if (this.$refs.chatMessages) {
         this.$refs.chatMessages.scrollTop = this.$refs.chatMessages.scrollHeight;
       }
     },
-    // Toggle the chat window open or closed
     toggleChat() {
       this.isChatOpen = !this.isChatOpen;
     },
@@ -170,7 +157,6 @@ body {
   align-items: center;
   height: 100vh;
 }
-
 .chatbot-wrapper {
   width: 80%;
   max-width: 80%;
