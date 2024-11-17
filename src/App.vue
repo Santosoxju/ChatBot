@@ -55,13 +55,8 @@ export default {
     };
   },
   mounted() {
-    // Vercel WebSocket URL
-    const socketUrl = process.env.NODE_ENV === 'production'
-      ? 'wss://your-vercel-app-url.vercel.app'  // Production URL
-      : 'http://127.0.0.1:3000';  // Local URL for development
-
-    this.socket = io(socketUrl);
-
+    // Conectar al servidor de WebSocket
+    this.socket = io('http://127.0.0.1:3000');
     this.messages.push({ text: "¡Bienvenido al Chatbot de Ayuda! ¿En qué puedo ayudarte hoy?", fromClient: false });
 
     this.socket.on('message', (text) => {
@@ -72,8 +67,10 @@ export default {
       }, 1500);
     });
 
+    // Emitir saludo inicial
     this.socket.emit('saludo', 'Hola, soy un cliente de Vue.js');
 
+    // Configuración del reconocimiento de voz
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     if (SpeechRecognition) {
       this.recognition = new SpeechRecognition();
@@ -81,6 +78,7 @@ export default {
       this.recognition.continuous = false;
       this.recognition.interimResults = false;
 
+      // Asignar el resultado del reconocimiento a newMessage sin enviarlo automáticamente
       this.recognition.onresult = (event) => {
         const transcript = event.results[0][0].transcript;
         this.newMessage = this.removeAccents(transcript);
@@ -94,9 +92,11 @@ export default {
     }
   },
   methods: {
+    // Función para quitar acentos del texto
     removeAccents(str) {
       return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
     },
+    // Método para iniciar la grabación de voz
     startRecording() {
       if (this.recognition) {
         this.recognition.start();
@@ -104,41 +104,26 @@ export default {
         alert('Reconocimiento de voz no soportado en este navegador.');
       }
     },
+    // Método para enviar el mensaje
     sendMessage() {
       if (this.newMessage.trim() === '') return;
       this.loading = true;
-
+      // Elimina acentos antes de enviar el mensaje
       const messageText = this.removeAccents(this.newMessage);
-
       this.socket.emit('message', messageText);
       this.messages.push({ text: messageText, fromClient: true });
       this.newMessage = '';
       this.$nextTick(() => {
         this.scrollChatToBottom();
       });
-
-      fetch('/api/chat', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ message: messageText, user_id: this.socket.id }),
-      })
-      .then(response => response.json())
-      .then(data => {
-        this.messages.push({ text: data.response, fromClient: false });
-        this.loading = false;
-        this.newMessage = '';
-        this.$nextTick(() => {
-          this.scrollChatToBottom();
-        });
-      });
     },
+    // Método para hacer scroll hacia abajo
     scrollChatToBottom() {
       if (this.$refs.chatMessages) {
         this.$refs.chatMessages.scrollTop = this.$refs.chatMessages.scrollHeight;
       }
     },
+    // Método para alternar la apertura del chat
     toggleChat() {
       this.isChatOpen = !this.isChatOpen;
     },
@@ -157,6 +142,7 @@ body {
   align-items: center;
   height: 100vh;
 }
+
 .chatbot-wrapper {
   width: 80%;
   max-width: 80%;
@@ -209,28 +195,28 @@ body {
   text-align: center;
   padding: 10px;
   background-color: #f8f8f8;
-  border-bottom: 1px solid #e1e1e1;
+  border-bottom: 2px solid #e0e0e0;
 }
 
 .chat-container {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: 500px;
 }
 
 .chat-messages {
   flex: 1;
+  padding: 15px;
   overflow-y: auto;
-  padding: 10px;
-  max-height: 400px;
+  background-color: #fafafa;
+  border-bottom: 2px solid #e0e0e0;
 }
 
 .message {
-  margin: 10px 0;
-  padding: 10px;
-  border-radius: 10px;
-  max-width: 70%;
-  background-color: #f1f1f1;
+  margin-bottom: 10px;
+  border-radius: 20px;
+  padding: 10px 15px;
+  max-width: 75%;
   word-wrap: break-word;
 }
 
@@ -241,39 +227,59 @@ body {
 }
 
 .bot-message {
-  background-color: #e1e1e1;
+  background-color: #e0e0e0;
+  color: #333;
+  align-self: flex-start;
 }
 
 .chat-input {
-  display: flex;
-  align-items: center;
   padding: 10px;
-  background-color: #f9f9f9;
+  background-color: #ffffff;
+  border-top: 2px solid #e0e0e0;
+  display: flex;
 }
 
-.chat-input input {
+input {
   flex: 1;
   padding: 10px;
+  border: 2px solid #ccc;
   border-radius: 20px;
-  border: 1px solid #ddd;
+  outline: none;
+  transition: border 0.3s;
   margin-right: 10px;
 }
 
-.chat-input button {
-  padding: 10px;
-  border-radius: 50%;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  cursor: pointer;
+input:focus {
+  border-color: #007bff;
 }
 
-.chat-input button:disabled {
-  background-color: #b0b0b0;
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-left: 5px;
+}
+
+button:hover {
+  background-color: #0056b3;
 }
 
 .loading {
-  font-size: 0.9rem;
-  color: #777;
+  font-size: 1rem;
+  color: #007bff;
+  text-align: center;
+  padding: 10px;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.5s;
+}
+
+.fade-enter, .fade-leave-to {
+  opacity: 0;
 }
 </style>
