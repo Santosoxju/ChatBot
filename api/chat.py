@@ -3,6 +3,10 @@ from flask_socketio import SocketIO
 from conexion import verificar_usuario, ejecutar_consulta
 from cliente import generar_respuesta_cliente
 import json
+import eventlet
+
+# Usar eventlet para manejar WebSockets
+eventlet.monkey_patch()
 
 app = Flask(__name__)
 socketio = SocketIO(app, cors_allowed_origins="*")
@@ -19,7 +23,6 @@ def handle_message(message):
     user_id = request.sid  # ID de sesión único
     estado_usuario = user_sessions.get(user_id, {"autenticado": False, "tipo": None, "email": None})
 
-    # Si el usuario aún no ha sido identificado como cliente o usuario
     if not estado_usuario["tipo"]:
         if "cliente" in message.lower():
             estado_usuario["tipo"] = "cliente"
@@ -54,5 +57,4 @@ def handle_message(message):
         socketio.send(respuesta)
 
 if __name__ == '__main__':
-    #socketio.run(app, host='127.0.0.1', port=3000)
     socketio.run(app, host='0.0.0.0', port=3000)
