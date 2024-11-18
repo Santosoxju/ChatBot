@@ -11,7 +11,7 @@ import re
 model = load_model("api/modelo_entrenadoBD.h5")
 
 # Cargar preguntas y respuestas desde el archivo JSON
-with open('preguntas_respuestasBD.json', 'r', encoding='utf-8') as file:
+with open('api/preguntas_respuestasBD.json', 'r', encoding='utf-8') as file:
     data = json.load(file)
 
 # Preparar el tokenizador con las preguntas
