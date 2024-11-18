@@ -1,7 +1,0 @@
-Flask
-requests
-flask-socketio
-bcrypt
-tensorflow
-eventlet
-gunicorn
