@@ -2,6 +2,8 @@ Flask
 flask-socketio
 bcrypt
 psycopg2
-tensorflow-cpu==2.18.0
+tensorflow-cpu
 eventlet
 gunicorn
+h5py
+keras
