@@ -2,11 +2,11 @@ import json
 import numpy as np
 import psycopg2
 import bcrypt
-from tensorflow.keras.models import load_model# type: ignore
-from tensorflow.keras.preprocessing.text import Tokenizer # type: ignore
-from tensorflow.keras.preprocessing.sequence import pad_sequences # type: ignore
+from tensorflow.keras.models import load_model  # type: ignore
+from tensorflow.keras.preprocessing.text import Tokenizer  # type: ignore
+from tensorflow.keras.preprocessing.sequence import pad_sequences  # type: ignore
 import re
-import ssl
+from urllib.parse import urlparse
 
 # Cargar el modelo entrenado
 model = load_model("api/modelo_entrenadoBD.h5")
@@ -26,26 +26,32 @@ respuesta_indices = {res: i for i, res in enumerate(respuestas)}
 indices_respuesta = {i: res for res, i in respuesta_indices.items()}
 max_length = max(len(p.split()) for p in preguntas)
 
-# Configuración de la base de datos
+# URL de conexión proporcionada por Render
+DATABASE_URL = 'postgres://constructora_t3xk_user:ubQrHW7VJys0QWFBwonKyxkT6BIhiI9x@dpg-cstems5ds78s73ci88o0-a:5432/constructora_t3xk'
+
+# Desglosar la URL de conexión
+url = urlparse(DATABASE_URL)
 DATABASE = {
-    'dbname': 'constructora_t3xk',
-    'user': 'constructora_t3xk_user',
-    'password': 'ubQrHW7VJys0QWFBwonKyxkT6BIhiI9x',
-    'host': 'dpg-cstems5ds78s73ci88o0-a',
-    'port': '5432'
+    'dbname': url.path[1:],  # Elimina el '/' del inicio de dbname
+    'user': url.username,
+    'password': url.password,
+    'host': url.hostname,
+    'port': url.port
 }
 
 def conectar_bd():
     """Establece la conexión con la base de datos."""
     try:
+        # Conexión a la base de datos usando los parámetros de la URL
         conexion = psycopg2.connect(
             dbname=DATABASE['dbname'],
             user=DATABASE['user'],
             password=DATABASE['password'],
             host=DATABASE['host'],
-            port=DATABASE['port']
-            sslmode='require'  # Requerir SSL
+            port=DATABASE['port'],
+            sslmode='require'  # Requiere SSL
         )
+        print("Conexión exitosa a la base de datos")
         return conexion
     except psycopg2.DatabaseError as e:
         print(f"Error en la conexión a la base de datos: {str(e)}")
@@ -155,5 +161,3 @@ def ejecutar_consulta(input_text):
         return f"Error en la base de datos: {str(e)}"
     except Exception as e:
         return f"Error desconocido: {str(e)}"
-
-
