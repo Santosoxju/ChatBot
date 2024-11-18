@@ -6,6 +6,7 @@ from tensorflow.keras.models import load_model# type: ignore
 from tensorflow.keras.preprocessing.text import Tokenizer # type: ignore
 from tensorflow.keras.preprocessing.sequence import pad_sequences # type: ignore
 import re
+import ssl
 
 # Cargar el modelo entrenado
 model = load_model("api/modelo_entrenadoBD.h5")
@@ -43,6 +44,7 @@ def conectar_bd():
             password=DATABASE['password'],
             host=DATABASE['host'],
             port=DATABASE['port']
+            sslmode='require'  # Requerir SSL
         )
         return conexion
     except psycopg2.DatabaseError as e:
