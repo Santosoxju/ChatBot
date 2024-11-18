@@ -10,7 +10,7 @@ logging.basicConfig(level=logging.INFO)
 
 # Cargar el modelo entrenado
 try:
-    modelo = load_model("modelo_entrenado.h5")
+    modelo = load_model("api/modelo_entrenado.h5")
     logging.info("Modelo cargado correctamente.")
 except Exception as e:
     logging.error(f"Error al cargar el modelo: {str(e)}")
