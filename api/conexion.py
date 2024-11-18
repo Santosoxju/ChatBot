@@ -8,7 +8,7 @@ from tensorflow.keras.preprocessing.sequence import pad_sequences # type: ignore
 import re
 
 # Cargar el modelo entrenado
-model = load_model("modelo_entrenadoBD.h5")
+model = load_model("api/modelo_entrenadoBD.h5")
 
 # Cargar preguntas y respuestas desde el archivo JSON
 with open('preguntas_respuestasBD.json', 'r', encoding='utf-8') as file:
