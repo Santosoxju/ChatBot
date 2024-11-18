@@ -1,6 +1,7 @@
 Flask
 flask-socketio
 bcrypt
+psycopg2
 tensorflow
 eventlet
 gunicorn
