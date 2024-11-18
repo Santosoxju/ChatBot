@@ -27,10 +27,10 @@ max_length = max(len(p.split()) for p in preguntas)
 
 # Configuración de la base de datos
 DATABASE = {
-    'dbname': 'constructora',
-    'user': 'postgres',
-    'password': 'postgres',
-    'host': 'localhost',
+    'dbname': 'constructora_t3xk',
+    'user': 'constructora_t3xk_user',
+    'password': 'ubQrHW7VJys0QWFBwonKyxkT6BIhiI9x',
+    'host': 'dpg-cstems5ds78s73ci88o0-a',
     'port': '5432'
 }
 
