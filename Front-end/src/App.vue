@@ -56,7 +56,7 @@ export default {
   },
   mounted() {
     // Conectar al servidor de WebSocket
-    this.socket = io('https://https://chatbot-xd4b.onrender.com');
+    this.socket = io('https://chatbot-xd4b.onrender.com');
     //this.socket = io('http://127.0.0.1:3000'); local
     this.messages.push({ text: "¡Bienvenido al Chatbot de Ayuda! ¿En qué puedo ayudarte hoy?", fromClient: false });
 
