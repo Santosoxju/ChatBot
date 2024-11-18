@@ -3,6 +3,7 @@ from flask_socketio import SocketIO
 from conexion import verificar_usuario, ejecutar_consulta
 from cliente import generar_respuesta_cliente
 import json
+import os
 
 app = Flask(__name__)
 socketio = SocketIO(app, cors_allowed_origins="*")
@@ -54,5 +55,5 @@ def handle_message(message):
         socketio.send(respuesta)
 
 if __name__ == '__main__':
-    #socketio.run(app, host='127.0.0.1', port=3000)
-    socketio.run(app, host='0.0.0.0', port=3000)
+    port = int(os.environ.get('PORT', 5000))  # Usamos el puerto proporcionado por Render
+    socketio.run(app, host='0.0.0.0', port=port)
