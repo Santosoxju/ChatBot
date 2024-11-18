@@ -56,7 +56,8 @@ export default {
   },
   mounted() {
     // Conectar al servidor de WebSocket
-    this.socket = io('http://127.0.0.1:3000');
+    this.socket = io('https://<your-flask-server-url>.render.com');
+    //this.socket = io('http://127.0.0.1:3000'); local
     this.messages.push({ text: "¡Bienvenido al Chatbot de Ayuda! ¿En qué puedo ayudarte hoy?", fromClient: false });
 
     this.socket.on('message', (text) => {
