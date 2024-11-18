@@ -18,7 +18,7 @@ except Exception as e:
 
 # Cargar preguntas y respuestas desde el archivo JSON
 try:
-    with open('preguntas_respuestas.json', 'r', encoding='utf-8') as file:
+    with open('api/preguntas_respuestas.json', 'r', encoding='utf-8') as file:
         data = json.load(file)
     logging.info("Archivo JSON cargado correctamente.")
 except FileNotFoundError:
